@@ -21,7 +21,7 @@ Account issues go to **support@cronhound.com**, billing issues to **billing@cron
 
 ## 🗺️ Where's cronhound headed?
 
-→ [Public Roadmap](https://github.com/orgs/cronhound/projects) — what's planned, what's building, what shipped.
+→ [Public Roadmap](https://github.com/orgs/cronhound/projects/1/views/2) — what's planned, what's building, what shipped.
 
 ## ✨ Built something cool with cronhound?
 
