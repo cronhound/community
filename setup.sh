@@ -42,32 +42,22 @@ gh label create "shipped"          --repo "$REPO" \
   --color "0E8A16" --description "Delivered in a release"
 
 # ─── 4. Discussion categories ───────────────────────────────────────────────
-echo "→ Fetching repo node ID..."
-REPO_NODE=$(gh api graphql -f query='
-  query($owner:String!, $name:String!) {
-    repository(owner:$owner, name:$name) { id }
-  }' -f owner="$OWNER" -f name="community" -q .data.repository.id)
-
-echo "→ Creating discussion categories..."
-# NOTE: GitHub auto-creates default categories on enable. If creation fails
-# because a category already exists, that's fine — move on.
-for cat in \
-  "Announcements|ANNOUNCEMENT|📣|Releases and roadmap updates" \
-  "Q&A|QUESTION|❓|Ask a question, get an answer" \
-  "Ideas|DISCUSSION|💡|Feature brainstorming" \
-  "Show and tell|DISCUSSION|✨|User projects and integrations"
-do
-  IFS='|' read -r cat_name cat_format cat_emoji cat_desc <<< "$cat"
-  echo "  • $cat_name"
-  gh api graphql -f query='
-    mutation($repo:ID!, $name:String!, $emoji:String!, $desc:String!, $format:DiscussionCategoryFormat!) {
-      createDiscussionCategory(input:{
-        repositoryId:$repo, name:$name, emoji:$emoji, description:$desc, format:$format
-      }) { category { id name } }
-    }' -f repo="$REPO_NODE" -f name="$cat_name" -f emoji="$cat_emoji" \
-       -f desc="$cat_desc" -f format="$cat_format" 2>/dev/null \
-    || echo "    (skipped — likely already exists)"
-done
+# NOTE: GitHub does NOT expose a programmatic way to create, rename, or delete
+# discussion categories via API. When Discussions are enabled, GitHub creates
+# default categories automatically: Announcements, General, Ideas, Polls, Q&A,
+# Show and tell.
+#
+# Manual action required:
+#   → Visit https://github.com/$REPO/discussions/categories
+#   → Delete unwanted categories: General, Polls
+#   → Optionally customize descriptions for the 4 keepers:
+#       Announcements, Q&A, Ideas, Show and tell
+echo "→ Listing current discussion categories (manual cleanup needed)..."
+gh api graphql -f query='
+  query { repository(owner:"'"$OWNER"'", name:"community") {
+    discussionCategories(first:20) { nodes { name } }
+  }}' --jq '.data.repository.discussionCategories.nodes[].name' \
+  | sed 's/^/    • /'
 
 # ─── 5. Public Roadmap project ──────────────────────────────────────────────
 echo "→ Creating public roadmap project..."
@@ -97,7 +87,9 @@ echo ""
 echo "✅ Community repo configured."
 echo ""
 echo "Still manual (≈10 min):"
-echo "  1. Add 4 columns to the Roadmap project: Ideas → Planned → Building → Shipped"
-echo "  2. Seed the Roadmap with 3–5 real near-term items"
-echo "  3. Pin a welcome post in Announcements"
-echo "  4. Upload a social preview image (Settings → Options)"
+echo "  1. Delete unwanted discussion categories (General, Polls) via:"
+echo "       https://github.com/$REPO/discussions/categories"
+echo "  2. Add 4 columns to the Roadmap project: Ideas → Planned → Building → Shipped"
+echo "  3. Seed the Roadmap with 3–5 real near-term items"
+echo "  4. Pin a welcome post in Announcements"
+echo "  5. Upload a social preview image (Settings → Options)"
