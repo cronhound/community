@@ -1,0 +1,93 @@
+name: 🐛 Bug Report
+description: Something in cronhound isn't working right
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. Bugs are triaged publicly
+        so you can see progress toward a fix.
+
+        **If your bug involves account data** (billing, private monitor details,
+        specific incident logs), please email **support@cronhound.com** instead —
+        that keeps sensitive info out of public view.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe what you observed. Screenshots help.
+      placeholder: |
+        When I clicked "Create monitor" with a URL longer than 200 characters,
+        the form submitted but no monitor appeared on my dashboard.
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-expected
+    attributes:
+      label: What did you expect to happen?
+      placeholder: |
+        The monitor should either be created successfully, or I should see
+        a validation error explaining why the URL was rejected.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps so a maintainer can see the same thing you see.
+      placeholder: |
+        1. Go to Dashboard → New Monitor
+        2. Paste a URL longer than 200 characters
+        3. Click Create
+        4. Return to dashboard — monitor is missing
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Other (specify in description)
+        - Not applicable (API / CLI issue)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: plan
+    attributes:
+      label: Plan tier
+      description: Helps us reproduce on an account with the same limits/features.
+      options:
+        - Free
+        - Paid (any tier)
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Anything else?
+      description: Workarounds you tried, related behavior, guesses about the cause.
+      placeholder: (optional)
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and didn't find this bug already reported
+          required: true
+        - label: This bug does not include sensitive account data (if it does, I'll email support@cronhound.com instead)
+          required: true

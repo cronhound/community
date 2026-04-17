@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Ask a Question
+    url: https://github.com/cronhound/community/discussions/categories/q-a
+    about: For usage questions or troubleshooting help, ask in Q&A — faster answers, searchable for the next person.
+  - name: 💡 Share an Idea
+    url: https://github.com/cronhound/community/discussions/categories/ideas
+    about: For early brainstorming. Promote to a feature request when you've sharpened the idea.
+  - name: 🔒 Account Issue (private)
+    url: mailto:support@cronhound.com
+    about: Anything involving your account data or private monitor details. We handle these privately.
+  - name: 💳 Billing Issue (private)
+    url: mailto:billing@cronhound.com
+    about: Invoices, subscription changes, payment problems. Kept private.

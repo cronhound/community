@@ -1,0 +1,66 @@
+name: 🚀 Feature Request
+description: Suggest a new capability for cronhound
+title: "[Feature]: "
+labels: ["feature-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest this. Focus on the **problem**
+        you're trying to solve, not just the solution you imagined — we might
+        know a better path to the same outcome.
+
+        Want to brainstorm before committing to a specific idea?
+        [Drop it in Ideas first](https://github.com/cronhound/community/discussions/categories/ideas).
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe the situation where cronhound falls short today.
+      placeholder: |
+        I monitor 50 microservices, and when one fails I want the alert to go
+        to a different Slack channel based on which service it is. Right now
+        all alerts go to a single channel and my team has to manually sort them.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: What solution do you imagine?
+      description: A rough sketch of how this could work. Don't overthink it.
+      placeholder: |
+        A "routing rule" per monitor that maps the monitor to a specific
+        notification channel, so each service's alerts go to its team's channel.
+    validations:
+      required: true
+
+  - type: textarea
+    id: who-this-helps
+    attributes:
+      label: Who else would this help?
+      description: Just you? Specific team types? Everyone on cronhound?
+      placeholder: |
+        Anyone running more than a handful of monitors across multiple teams
+        or services — probably most paid customers over $50/mo.
+    validations:
+      required: false
+
+  - type: textarea
+    id: workarounds
+    attributes:
+      label: What have you tried as a workaround?
+      placeholder: |
+        I set up a Slack bot that parses monitor names and reroutes messages,
+        but it's fragile and breaks when I rename monitors.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and discussions and didn't find this already requested
+          required: true
