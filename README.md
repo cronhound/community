@@ -1,4 +1,5 @@
-# Cronhound Community
+[![Uptime](https://cronhound.com/badge/2403d7d9-7620-48ba-b66e-ea8711b5144f?style=for-the-badge)](https://cronhound.com)
+# Cronhound Community 
 
 The public home for bug reports, feature requests, roadmap, and community-contributed
 content for [cronhound](https://cronhound.com) — uptime monitoring that actually works.
