@@ -1,4 +1,4 @@
-[![Uptime](https://cronhound.com/badge/2403d7d9-7620-48ba-b66e-ea8711b5144f?style=for-the-badge)](https://cronhound.com)
+[![Uptime](https://cronhound.com/badge/cc255bb7-a092-4d9a-a99e-7b6c10c44073)](https://cronhound.com/status/cronhound)
 # Cronhound Community 
 
 The public home for bug reports, feature requests, roadmap, and community-contributed
